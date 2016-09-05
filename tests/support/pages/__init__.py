@@ -1,0 +1,3 @@
+from home_page import HomePage
+from search_results_page import SearchResultsPage
+from login_page import LoginPage
