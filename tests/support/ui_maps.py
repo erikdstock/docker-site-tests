@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 class HomePageMap(object):
-
+    """Selenium element selection strategies"""
     SEARCH_BOX = (By.CSS_SELECTOR, 'input[placeholder~="Search"]')
     LOGIN_BUTTON = (By.LINK_TEXT, 'Log In')
     CREATE_USERNAME_INPUT = (By.CSS_SELECTOR, "input[placeholder='Choose a Docker Hub ID']")
@@ -12,13 +12,14 @@ class HomePageMap(object):
     CREATE_PASSWORD_MESSAGE = (By.CSS_SELECTOR, "input[type=password] ~ div[class^=FancyInput__error]")
 
 class LoginPageMap(object):
-
+    """Selenium element selection strategies"""
     SUBMIT_BUTTON = (By.CSS_SELECTOR, 'button[type=submit]')
     USERNAME_INPUT = (By.CSS_SELECTOR, 'input[placeholder=Username]')
     PASSWORD_INPUT = (By.CSS_SELECTOR, 'input[type=password]')
-    PASSWORD_MESSAGE = (By.CSS_SELECTOR, 'form div:nth-child(2) div')
+    PASSWORD_MESSAGE = (By.CSS_SELECTOR, 'input[type=password] ~ div[class^=FancyInput__error]')
+    LOGIN_ALERT = (By.CSS_SELECTOR, "form p.alert-box")
 
 class SearchPageMap(object):
-    # This could be better
+    """Selenium element selection strategies"""
     NO_RESULTS_MESSAGE = (By.CSS_SELECTOR, 'h2 span')
-    SEARCH_RESULTS = (By.CSS_SELECTOR, 'div.profile-repos ul li a div:nth-child(2) div:nth-child(1)')
+    SEARCH_RESULTS = (By.CSS_SELECTOR, 'div[class^=RepositoryListItem__repoName]')

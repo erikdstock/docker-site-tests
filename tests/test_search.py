@@ -4,18 +4,17 @@ import sys
 from selenium import webdriver
 from support.pages import HomePage, SearchResultsPage
 
-class RepoSearch(unittest.TestCase):
+class RepoSearchFlow(unittest.TestCase):
     """Searching provides relevant results"""
 
     def setUp(self):
         path = os.path.join(os.path.dirname(os.path.abspath(__file__)) + "/../bin/chromedriver")
-        # use global chromedriver from PATH if specified
-        self.driver = webdriver.Chrome() if (sys.argv[0] == "sys") else webdriver.Chrome(path)
+        self.driver = webdriver.Chrome(path)
         self.driver.get("https://hub.docker.com")
 
     def test_search_flow(self):
         """
-        Good search leads to relevant result
+        When the user searches, they see relevant results
         """
 
         home_page = HomePage(self.driver)
@@ -30,7 +29,8 @@ class RepoSearch(unittest.TestCase):
 
     def test_no_results_search_flow(self):
         """
-        Search with nothing found returns nothing + message
+        When a search doesn't find anything
+        the user sees a helpful error message.
         """
 
         #Load the main page. In this case the home page of Python.org.

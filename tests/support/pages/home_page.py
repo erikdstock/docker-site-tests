@@ -21,13 +21,14 @@ class HomePage(BasePage):
         self._wait_for_page_load()
 
     def search_for(self, string):
+        """Fill out the search form and submit"""
         element = self.driver.find_element(*HomePageMap.SEARCH_BOX)
         element.send_keys(string)
         element.send_keys(Keys.RETURN)
-        # Give search from time to happen since it is via react- look into a better way to implement this
         self._wait_for_page_load()
 
     def create_account(self, username, email, password):
+        """Fill out the create account form and submit"""
         element = self.driver.find_element(*HomePageMap.CREATE_USERNAME_INPUT)
         element.send_keys(username)
         element = self.driver.find_element(*HomePageMap.CREATE_EMAIL_INPUT)
@@ -35,13 +36,17 @@ class HomePage(BasePage):
         element = self.driver.find_element(*HomePageMap.CREATE_PASSWORD_INPUT)
         element.send_keys(password)
         element.send_keys(Keys.RETURN)
-        # Give search from time to happen since it is via react- look into a better way to implement this
         self._wait_for_page_load()
 
     def password_error_message(self):
-        self.driver.find_element(*HomePageMap.CREATE_PASSWORD_MESSAGE).text
+        """Get password field error message"""
+        return self.driver.find_element(*HomePageMap.CREATE_PASSWORD_MESSAGE).text
 
 
     def _wait_for_page_load(self):
+        """
+        Sleep for 3 seconds to account for actions
+        that do not trigger a page reload
+        """
         time.sleep(3)
 
