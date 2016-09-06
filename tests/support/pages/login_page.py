@@ -19,15 +19,16 @@ class LoginPage(BasePage):
         element.send_keys(password)
         element = self.driver.find_element(*LoginPageMap.SUBMIT_BUTTON)
         element.click()
-        # Give search from time to happen since it is via react- look into a better way to implement this
+        # Give search from time to happen since it is via react
+        # TODO - look into a better way to implement this (if this were a real
+        # test suite)
         time.sleep(2)
 
     def password_error_message(self):
         """ Password field error message"""
         element = self.driver.find_element(*LoginPageMap.PASSWORD_MESSAGE)
-        element.text
+        return element.text
 
     def login_alert(self):
         """Login alert box"""
-        self.driver.find_element(*LoginPageMap.LOGIN_ALERT).text
-
+        return self.driver.find_element(*LoginPageMap.LOGIN_ALERT).text
